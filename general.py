@@ -78,5 +78,44 @@ def black_scholes_put(S,K,T,r,sigma):
 
 def calculate_greeks(S,K,T,r,sigma ,option_type='call'):
     """
+     Calculate all Greeks for an option
+    
+    Parameters:
+    -----------
+    S : float
+        Current stock price
+    K : float
+        Strike price
+    T : float
+        Time to expiration (in years)
+    r : float
+        Risk-free interest rate (annual, as decimal)
+    sigma : float
+        Volatility (annual, as decimal)
+    option_type : str
+        'call' or 'put'
+    
+    Returns:
+    --------
+    dict : Dictionary with all Greeks
+    
+    Example:
+    --------
+    >>> greeks = calculate_greeks(100, 100, 1, 0.05, 0.2, 'call')
+    >>> print(f"Delta: {greeks['delta']:.4f}")
     """
+    # Calculate d1 and d2
+    d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
+    d2 = d1 - sigma * np.sqrt(T)
+
+    #delta
+    if option_type == 'call':
+        delta = norm.edf(d1)
+    else:
+        delta = norm.edf(d1) - 1
+
+    #gamma 
+
+
+
     
