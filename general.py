@@ -77,4 +77,6 @@ def black_scholes_put(S,K,T,r,sigma):
     return put_price 
 
 def calculate_greeks(S,K,T,r,sigma ,option_type='call'):
+    """
+    """
     
